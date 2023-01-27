@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+</head>
+<style>
+    .text-red{
+        color: red;
+    }
+    .text-yellow{
+        color: yellow;
+    }
+</style>
+<body>
+    <div id="app">
+        <input type="text" v-model="greeting">
+        {{greeting}} {{greeting.length}}
+        <button :class="ButtonStyle" v-on:click="toggle">Click Here</button>
+        <button v-on:click="moreinfo">More Info</button>
+        <p>{{info}}</p>
+    </div> 
+    <script>
+        Vue.createApp({
+            data() {
+                return {
+                    greeting:"hello",
+                    ButtonStyle:"text-red",
+                    info: ""
+                }
+            },
+            methods: {
+                toggle(){
+                    this.ButtonStyle = "text-yellow"
+                },
+                moreinfo(){
+                    this.info =  "Camelliao holosan"
+                }
+            },
+            // mounted() {
+            //     setTimeout(()=>{
+            //        alert("Close Bitch!")
+            //     },3000)
+            // },
+        }).mount('#app') 
+    </script>
+</body>
+</html>
