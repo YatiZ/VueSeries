@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h1 v-show="progressList.length">Progress</h1>
+        <li 
+         v-for="list in progressList" class="text-red-600" :key="list.id">
+            {{list.name}}
+                <input type="checkbox" v-model="list.complete">
+            
+        </li>
+        <!-- <prep>{{lists}}</prep> -->
+        <div>
+            <h1>Completed Tasks</h1>
+            <li v-show="completedList.length" 
+             v-for="list in completedList"  :key="list.id" >{{list.name}}
+                <input type="checkbox" v-model="list.complete">
+            </li>
+        </div>
+        
+    </div>
+    <script>
+        let app= {
+            data(){
+                return{
+                   lists:[
+                    {name:'To give gift to my mom',complete:false,id:1},
+                     {name:'To buy many gold',complete:false,id:2},
+                     {name:'To buy cars',complete:false,id:3}
+                    
+                   ]
+                }
+                
+            },
+            computed:{
+                    progressList(){
+                         return this.lists.filter(a=> !a.complete);
+                    },
+                    completedList(){
+                        return this.lists.filter(a=>a.complete);
+                    }
+                }
+        }
+         Vue.createApp(app).mount('#app')
+    </script>
+</body>
+</html>
